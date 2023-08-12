@@ -1,0 +1,17 @@
+﻿Name,HEX,RGB,shininess
+White,#FFFFFF,"rgb(100,100,100)",bright
+Silver,#C0C0C0,"rgb(75,75,75)",bright
+Gray,#808080,"rgb(50,50,50)",dull
+Black,#000000,"rgb(0,0,0)",dull
+Red,#FF0000,"rgb(100,0,0)",bright
+Maroon,#800000,"rgb(50,0,0)",bright
+Yellow,#FFFF00,"rgb(100,100,0)",bright
+Olive,#808000,"rgb(50,50,0)",dull
+Lime,#00FF00,"rgb(0,100,0)",bright
+Green,#008000,"rgb(0,50,0)",bright
+Aqua,#00FFFF,"rgb(0,100,100)",bright
+Teal,#008080,"rgb(0,50,50)",dull
+Blue,#0000FF,"rgb(0,0,100)",dull
+Navy,#000080,"rgb(0,0,50)",dull
+Fuchsia,#FF00FF,"rgb(100,0,100)",bright
+Purple,#800080,"rgb(50,0,50)",bright
