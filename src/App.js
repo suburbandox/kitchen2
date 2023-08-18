@@ -25,6 +25,7 @@ class App extends React.Component {
           return 'loading...'
       }
 
+
       function filterColor(lightOrDark, color) {
           if (lightOrDark === 'dark') {
               return color[3] === 'dull'
@@ -34,9 +35,9 @@ class App extends React.Component {
               return true
           }
       }
-
       const colors = data.filter(
           color => filterColor(lightOrDark, color)
+          
       ).map(color => {
           return <div
           className={color[3]}
@@ -44,9 +45,16 @@ class App extends React.Component {
               backgroundColor: color[1],
               width: '100px',
               margin: '10px',
-              padding: '5px'
-          }}>{color[0]}</div>
+              padding: '0px',
+              //border: "1px solid black"
+          }}>
+          <img src={`imo/${color[4]}`} alt="Italian Trulli"/>
+          {/* <h1>{color[0]}</h1>
+          <p>kkkk+{color[0]}</p>   */}
+          {color[0]}</div>
+   
       })
+      
 
       return (
           <div>
