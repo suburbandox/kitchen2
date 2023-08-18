@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.37e70f87.css",
-    "main.js": "/react-gh-pages/static/js/main.a4287c42.js",
-    "static/js/787.0a8471e9.chunk.js": "/react-gh-pages/static/js/787.0a8471e9.chunk.js",
-    "static/media/color_srgb.csv": "/react-gh-pages/static/media/color_srgb.38de7de63dcc97e3d840.csv",
-    "index.html": "/react-gh-pages/index.html",
-    "main.37e70f87.css.map": "/react-gh-pages/static/css/main.37e70f87.css.map",
-    "main.a4287c42.js.map": "/react-gh-pages/static/js/main.a4287c42.js.map",
-    "787.0a8471e9.chunk.js.map": "/react-gh-pages/static/js/787.0a8471e9.chunk.js.map"
+    "main.css": "/kitchen2/static/css/main.37e70f87.css",
+    "main.js": "/kitchen2/static/js/main.3c065d0e.js",
+    "static/js/787.0a8471e9.chunk.js": "/kitchen2/static/js/787.0a8471e9.chunk.js",
+    "static/media/color_srgb.csv": "/kitchen2/static/media/color_srgb.38de7de63dcc97e3d840.csv",
+    "index.html": "/kitchen2/index.html",
+    "main.37e70f87.css.map": "/kitchen2/static/css/main.37e70f87.css.map",
+    "main.3c065d0e.js.map": "/kitchen2/static/js/main.3c065d0e.js.map",
+    "787.0a8471e9.chunk.js.map": "/kitchen2/static/js/787.0a8471e9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.37e70f87.css",
-    "static/js/main.a4287c42.js"
+    "static/js/main.3c065d0e.js"
   ]
 }
