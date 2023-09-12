@@ -1,7 +1,7 @@
-import colorData from "./color_srgb.csv";
+import colorData from "../color_srgb.csv";
 import React from "react";
 import Papa from 'papaparse';
-import "./App.css";
+import "../App.css";
 
 class App extends React.Component {
   constructor(props) {super(props);
@@ -57,6 +57,7 @@ class App extends React.Component {
 
       return (
           <div>
+              <h1>This is app2</h1>
               <label for="options">Choose an option</label>
               <select onChange={(event) => {
                   this.setState({lightOrDark: event.target.value})
