@@ -9,10 +9,9 @@ import "../App.css";
 
 class App extends React.Component {
   constructor(props) {super(props);
-    this.state = { data: null, lightOrDark: '',temp:'' };
+    this.state = { data: null, lightOrDark: '',temp:'',shuffle:'', };
 
   }
-  
   
   async componentDidMount() {
     const response = await fetch(colorData);
@@ -24,17 +23,11 @@ class App extends React.Component {
   }
 
   render() {
-      const { data, lightOrDark,temp } = this.state;
-      //const { data2, temp } = this.state;
-      //const t = FileReader(text)
-      //console.log(text); 
-    
+      const { data, lightOrDark,temp,shuffle} = this.state;
+
       if (data === null) {
           return 'loading...'
       }
-    //   if (data2 === null) {
-    //     return 'loading...'
-    // }
 
       function green(){
         return "red"
@@ -57,14 +50,24 @@ class App extends React.Component {
         } else {
             return true
         }
-        //console.log(text); 
+        function sortcolor(shuffle,color){
+          if(shuffle === 'asc'){
+            return color.sort();
+          }else if(shuffle === 'des'){
+            return color.sort().reverse();
+          }else if(shuffle === '+star'){
+            return color.sort(function(a, b){return b[8] - a[8]});
+          }else if(shuffle === '-star'){
+            return color.sort(function(a, b){return a[8] - b[8]});
+          }else{
+            return true
+          }
+        }
+
     }
       // const a =["red",(color[3])]
       const colors = data.filter(
           color => filterColor(lightOrDark, color) && filterColor2(temp,color)
-          //color => filterColor2(temp,color)
-
-   
       ).map(color => {
           return <div
           className={color[3]}
@@ -82,13 +85,8 @@ class App extends React.Component {
           {color[0]}</div>
           
       })
-      //console.log(colors)
-      colors.slice(2,8)
-//       const fs = require('fs')
-// fs.readFile('tp.txt', (err, inputD) => {
-//    if (err) throw err;
-//       console.log(inputD.toString());
-// })
+      console.log(colors)
+      //colors.slice(2,8)
 
       return (
           <div>
@@ -107,6 +105,16 @@ class App extends React.Component {
                 <option value="warm">Warm Only</option>
                 <option value="cool">Cool Only</option>
               </select>
+              <select onChange={(event) => {
+                  this.setState({shuffle: event.target.value})
+              }}>
+                <option value="all">Show all</option>
+                <option value="asc">asc </option>
+                <option value="des">des </option>
+                <option value="+star">asc </option>
+                <option value="-star">des </option>
+              </select>
+              
             <div className="App" style={{
                   display: 'flex',
                   width: '80%',
@@ -119,9 +127,6 @@ class App extends React.Component {
           </div>
         </div>
     );
-    
   }
-  
 }
-
 export default App;

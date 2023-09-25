@@ -7,8 +7,6 @@ import {
 import "./index.css";
 import App from "./routes/App";
 import App2 from "./routes/App2";
-import a from "./routes/a";
-
 import Navbar from './Navbar'
 
 
@@ -29,7 +27,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
         <React.StrictMode>
         <Navbar />
-        <a />
         <RouterProvider router={router} />
   </React.StrictMode>,
 );
