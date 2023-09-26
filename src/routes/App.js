@@ -3,18 +3,19 @@ import React from "react";
 import Papa from 'papaparse';
 import "../App.css";
 
-
-
-//import text from '../tp.txt'; 
   function sortColors(sortOrder,color){
-          if(sortOrder === 'asc'||sortOrder==""){
+    console.log(sortOrder)
+          if(sortOrder === 'asc'){
             return color.sort();
           }else if(sortOrder === 'des'){
             return color.sort().reverse();
           }else if(sortOrder === '+star'){
-            return color.sort(function(a, b){return b[8] - a[8]});
+            debugger
+            return color.sort(function(a, b){return b[7] - a[7]});
           }else if(sortOrder === '-star'){
-            return color.sort(function(a, b){return a[8] - b[8]});
+            return color.sort(function(a, b){return a[7] - b[7]});
+          }else {
+            return color.sort();
           }
         }
 
@@ -83,10 +84,11 @@ class App extends React.Component {
           {/* <h1>{color[0]}</h1> */}
           {/* <p>kkkk+{color[0]}</p>   */}
           <p>{green()}</p>  
+          <h1>{color[7]}</h1>
           {color[0]}</div>
           
       })
-      console.log(colors)
+      //console.log(colors)
       //colors.slice(2,8)
 
       return (
@@ -107,9 +109,8 @@ class App extends React.Component {
                 <option value="cool">Cool Only</option>
               </select>
               <select onChange={(event) => {
-                  this.setState({shuffle: event.target.value})
+                  this.setState({sortOrder: event.target.value})
               }}>
-                <option value="all">Show all</option>
                 <option value="asc">asc </option>
                 <option value="des">des </option>
                 <option value="+star">+star </option>
