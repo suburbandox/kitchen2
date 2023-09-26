@@ -3,19 +3,18 @@ import React from "react";
 import Papa from 'papaparse';
 import "../App.css";
 
-  function sortColors(sortOrder,color){
+  function sortColors(sortOrder,colors){
     console.log(sortOrder)
           if(sortOrder === 'asc'){
-            return color.sort();
+            return colors.sort(o => o.Name);
           }else if(sortOrder === 'des'){
-            return color.sort().reverse();
+            return colors.sort(o => o.Name).reverse();
           }else if(sortOrder === '+star'){
-            debugger
-            return color.sort(function(a, b){return b[7] - a[7]});
+            return colors.sort(function(a, b){return b.star - a.star});
           }else if(sortOrder === '-star'){
-            return color.sort(function(a, b){return a[7] - b[7]});
+            return colors.sort(function(a, b){return a.star - b.star});
           }else {
-            return color.sort();
+            return colors.sort(o => o.Name);
           }
         }
 
@@ -29,7 +28,7 @@ class App extends React.Component {
     const response = await fetch(colorData);
     const csvText = await response.text();
     
-    const parsedData = Papa.parse(csvText).data.slice(1);
+    const parsedData = Papa.parse(csvText,{header:true}).data;
 
     this.setState({ data: parsedData });
   }
@@ -46,9 +45,9 @@ class App extends React.Component {
       }
       function filterColor(lightOrDark, color) {
           if (lightOrDark === 'dark') {
-              return color[3] === 'dull'
+              return color.shininess === 'dull'
           } else if (lightOrDark === 'light') {
-              return color[3] === 'bright'
+              return color.shininess === 'bright'
           } else {
               return true
           }
@@ -56,9 +55,9 @@ class App extends React.Component {
       }
       function filterColor2(temp, color) {
         if (temp === 'warm') {
-            return color[6] === 'warm'
+            return color.temp === 'warm'
         } else if (temp === 'cool') {
-            return color[6] === 'cool'
+            return color.temp === 'cool'
         } else {
             return true
         }
@@ -72,23 +71,23 @@ class App extends React.Component {
 
       const colors = sortedColors.map(color => {
           return <div
-          className={color[3]}
+          className={color.shininess}
           style={{
-              backgroundColor: color[1],
+              backgroundColor: color.HEX,
               width: '100px',
               margin: '10px',
               padding: '0px',
-              //border: "1px solid black"
+              border: "1px solid black"
           }}>
-          <img src={`imo/${color[4]}`} alt="Italian Trulli"/>
+          <img src={`imo/${color.imo}`} alt="Italian Trulli"/>
           {/* <h1>{color[0]}</h1> */}
           {/* <p>kkkk+{color[0]}</p>   */}
           <p>{green()}</p>  
-          <h1>{color[7]}</h1>
-          {color[0]}</div>
+          <h4>{color.Name}</h4>
+          </div>
           
       })
-      //console.log(colors)
+      console.log(colors)
       //colors.slice(2,8)
 
       return (
@@ -113,8 +112,8 @@ class App extends React.Component {
               }}>
                 <option value="asc">asc </option>
                 <option value="des">des </option>
-                <option value="+star">+star </option>
-                <option value="-star">-star </option>
+                <option value="+star">star asc</option>
+                <option value="-star">star dec</option>
               </select>
               
             <div className="App" style={{
