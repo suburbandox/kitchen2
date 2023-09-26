@@ -6,10 +6,21 @@ import "../App.css";
 
 
 //import text from '../tp.txt'; 
+  function sortColors(sortOrder,color){
+          if(sortOrder === 'asc'||sortOrder==""){
+            return color.sort();
+          }else if(sortOrder === 'des'){
+            return color.sort().reverse();
+          }else if(sortOrder === '+star'){
+            return color.sort(function(a, b){return b[8] - a[8]});
+          }else if(sortOrder === '-star'){
+            return color.sort(function(a, b){return a[8] - b[8]});
+          }
+        }
 
 class App extends React.Component {
   constructor(props) {super(props);
-    this.state = { data: null, lightOrDark: '',temp:'',shuffle:'', };
+    this.state = { data: null, lightOrDark: '',temp:'',sortOrder:'', };
 
   }
   
@@ -23,7 +34,7 @@ class App extends React.Component {
   }
 
   render() {
-      const { data, lightOrDark,temp,shuffle} = this.state;
+      const { data, lightOrDark,temp,sortOrder} = this.state;
 
       if (data === null) {
           return 'loading...'
@@ -50,25 +61,15 @@ class App extends React.Component {
         } else {
             return true
         }
-        function sortcolor(shuffle,color){
-          if(shuffle === 'asc'){
-            return color.sort();
-          }else if(shuffle === 'des'){
-            return color.sort().reverse();
-          }else if(shuffle === '+star'){
-            return color.sort(function(a, b){return b[8] - a[8]});
-          }else if(shuffle === '-star'){
-            return color.sort(function(a, b){return a[8] - b[8]});
-          }else{
-            return true
-          }
-        }
-
+      
     }
       // const a =["red",(color[3])]
-      const colors = data.filter(
+      const filteredColors = data.filter(
           color => filterColor(lightOrDark, color) && filterColor2(temp,color)
-      ).map(color => {
+      )
+      const sortedColors = sortColors(sortOrder,filteredColors)
+
+      const colors = sortedColors.map(color => {
           return <div
           className={color[3]}
           style={{
@@ -111,8 +112,8 @@ class App extends React.Component {
                 <option value="all">Show all</option>
                 <option value="asc">asc </option>
                 <option value="des">des </option>
-                <option value="+star">asc </option>
-                <option value="-star">des </option>
+                <option value="+star">+star </option>
+                <option value="-star">-star </option>
               </select>
               
             <div className="App" style={{
