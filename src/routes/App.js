@@ -4,11 +4,11 @@ import Papa from 'papaparse';
 import "../App.css";
 
   function sortColors(sortOrder,colors){
-    console.log(sortOrder)
+  console.log(sortOrder)
           if(sortOrder === 'asc'){
-            return colors.sort(o => o.Name);
+            return colors.sort(function(a, b){return a.Name.localeCompare(b.Name)});
           }else if(sortOrder === 'des'){
-            return colors.sort(o => o.Name).reverse();
+            return colors.sort(function(a,b){return b.Name.localeCompare(a.Name)});
           }else if(sortOrder === '+star'){
             return colors.sort(function(a, b){return b.star - a.star});
           }else if(sortOrder === '-star'){
@@ -69,8 +69,8 @@ class App extends React.Component {
       )
       const sortedColors = sortColors(sortOrder,filteredColors)
 
-      const colors = sortedColors.map(color => {
-          return <div
+      const colors = sortedColors.map(color => { 
+          return <div key={color.Name}
           className={color.shininess}
           style={{
               backgroundColor: color.HEX,
@@ -92,7 +92,7 @@ class App extends React.Component {
 
       return (
           <div>
-              <label for="options">Choose an option</label>
+              <label htmlFor="options">Choose an option</label>
               <select onChange={(event) => {
                   this.setState({lightOrDark: event.target.value})
               }}>
