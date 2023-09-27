@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 import "../App.css";
 
   function sortColors(sortOrder,colors){
-  console.log(sortOrder)
+          console.log(sortOrder)
           if(sortOrder === 'asc'){
             return colors.sort(function(a, b){return a.Name.localeCompare(b.Name)});
           }else if(sortOrder === 'des'){
@@ -17,7 +17,12 @@ import "../App.css";
             return colors.sort(o => o.Name);
           }
         }
+function dateformating(){
 
+  const date = new Date(2009, 10, 10);  // 2009-11-10
+const month = date.toLocaleString('default', { month: 'long' });
+console.log(month);
+}
 class App extends React.Component {
   constructor(props) {super(props);
     this.state = { data: null, lightOrDark: '',temp:'',sortOrder:'', };
@@ -53,7 +58,7 @@ class App extends React.Component {
           }
           //console.log(text); 
       }
-      function filterColor2(temp, color) {
+      function filterTemp(temp, color) {
         if (temp === 'warm') {
             return color.temp === 'warm'
         } else if (temp === 'cool') {
@@ -65,7 +70,7 @@ class App extends React.Component {
     }
       // const a =["red",(color[3])]
       const filteredColors = data.filter(
-          color => filterColor(lightOrDark, color) && filterColor2(temp,color)
+          color => filterColor(lightOrDark, color) && filterTemp(temp,color)
       )
       const sortedColors = sortColors(sortOrder,filteredColors)
 
@@ -88,6 +93,7 @@ class App extends React.Component {
           
       })
       console.log(colors)
+      dateformating()
       //colors.slice(2,8)
 
       return (
